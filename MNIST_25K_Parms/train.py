@@ -5,6 +5,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import time
 import matplotlib.pyplot as plt
+import datetime
+import platform
 
 '''
 class SimpleCNN(nn.Module):
@@ -151,9 +153,14 @@ def train():
     plt.legend()
     plt.savefig('training_plot.png')
     print('Training plot saved as training_plot.png')
-    timestamp = time.strftime('%Y%m%d_%H%M%S')
-    torch.save(model.state_dict(), f"model_CPU_{timestamp}.pt")
-    print(f"Model saved as model_CPU_{timestamp}.pt")
+    # After training and before saving the model:
+    now = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    device = "CPU"
+    if torch.cuda.is_available():
+        device = "GPU"
+    model_filename = f"model_{now}_{device}.pt"
+    torch.save(model.state_dict(), f"MNIST_25K_Parms/{model_filename}")
+    print(f"Model saved as {model_filename}")
 
 if __name__ == "__main__":
     train()

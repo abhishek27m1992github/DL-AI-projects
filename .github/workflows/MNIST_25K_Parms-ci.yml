@@ -9,9 +9,20 @@ on:
       - 'MNIST_25K_Parms/**'
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          pip install -r MNIST_25K_Parms/requirements.txt
+      - name: Run training
+        run: |
+          python MNIST_25K_Parms/train.py
       - name: Run tests
-        run: echo "Running MNIST_25K_Parms tests" 
+        run: |
+          python MNIST_25K_Parms/test_model.py 

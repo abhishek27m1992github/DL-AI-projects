@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+*.egg-info/
+*.log
+
+# Model files
+MNIST_25K_Parms/*.pt
+MNIST_25K_Parms/*.pth
+MNIST_25K_Parms/*.h5
+
+# Jupyter
+*.ipynb_checkpoints
+
+# OS
+.DS_Store 
