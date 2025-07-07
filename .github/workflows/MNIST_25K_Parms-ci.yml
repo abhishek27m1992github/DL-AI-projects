@@ -1,0 +1,17 @@
+name: MNIST_25K_Parms CI
+
+on:
+  push:
+    paths:
+      - 'MNIST_25K_Parms/**'
+  pull_request:
+    paths:
+      - 'MNIST_25K_Parms/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run tests
+        run: echo "Running MNIST_25K_Parms tests" 
