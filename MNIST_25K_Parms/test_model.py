@@ -29,10 +29,9 @@ def test_accuracy():
     test_dataset = datasets.MNIST('./data', train=False, download=True, transform=transform)
     test_loader = DataLoader(test_dataset, batch_size=256, shuffle=False)
     model = SimpleCNN().to(device)
-    # Find latest model
-    model_files = sorted(glob.glob('model_CPU_*.pt'))
-    assert model_files, "No model file found. Run train.py first."
-    model.load_state_dict(torch.load(model_files[-1], map_location=device))
+    model_file = get_latest_model_file()
+    assert model_file, "No model file found. Run train.py first."
+    model.load_state_dict(torch.load(model_file, map_location=device))
     model.eval()
     correct = 0
     total = 0
@@ -47,6 +46,12 @@ def test_accuracy():
     print(f"Test accuracy: {acc*100:.2f}%")
     assert acc > 0.95, f"Accuracy too low: {acc*100:.2f}%"
     print("Accuracy test passed.")
+
+def get_latest_model_file():
+    model_files = glob.glob("MNIST_25K_Parms/model_*.pt")
+    if not model_files:
+        return None
+    return max(model_files, key=os.path.getctime)
 
 def main():
     test_parameter_count()
