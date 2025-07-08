@@ -1,4 +1,4 @@
-[![CI/CD Pipeline](https://github.com/${{github.repository}}/actions/workflows/ci.yml/badge.svg)](https://github.com/${{github.repository}}/actions/workflows/ci.yml)
+![Build Status](https://github.com/abhishek27m1992github/DL-AI-projects/actions/workflows/MNIST_25K_Parms-ci.yml/badge.svg)
 
 # MNIST DNN CI/CD Example
 
@@ -45,3 +45,40 @@ This project demonstrates a basic CI/CD pipeline for a machine learning project 
 
 ---
 **Note:** All code runs on CPU and is designed for local and CI/CD (GitHub Actions) environments. 
+
+---
+
+## How to Fix
+
+You need to add `matplotlib` (and any other required packages) to your `MNIST_25K_Parms/requirements.txt` file.
+
+---
+
+### **Steps:**
+
+1. **Edit `MNIST_25K_Parms/requirements.txt`**  
+   Add the following line if it’s not already present:
+   ```
+   matplotlib
+   ```
+
+   Also, make sure any other packages you use (like `torch`, `numpy`, etc.) are listed.
+
+2. **Commit and push the change:**
+   ```bash
+   git add MNIST_25K_Parms/requirements.txt
+   git commit -m "Add matplotlib to requirements.txt"
+   git push origin main
+   ```
+
+3. **GitHub Actions will automatically re-run**  
+   The workflow will now install `matplotlib` and the error should be resolved.
+
+---
+
+**Summary:**  
+- Add `matplotlib` to your `requirements.txt`
+- Commit and push
+- The workflow will succeed if all dependencies are listed
+
+Let me know if you need help updating your requirements file or if you see any new errors! 
